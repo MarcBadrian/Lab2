@@ -50,7 +50,10 @@ public class TodoClient {
 					System.out.print("Enter a message: ");
 					String message = s.nextLine();
 					try {
-						System.out.println("Making POST call");
+						System.out.println();
+						System.out.println("<Making POST call>");
+						System.out.println();
+
 						// Parse the URL
 						String urlParameters  = "choice=" + choice + "&id=" + id + "&message=" + message;
 						byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
@@ -83,13 +86,15 @@ public class TodoClient {
 				case 2:
 					// Get and display todo message as well as when it was posted.
 					System.out.println("To GET a record...");
-					System.out.print("\n" + "Enter a ToDo id number: ");
+					System.out.print("Enter a ToDo id number: ");
 					int todoId = Integer.parseInt(s.nextLine());
-					System.out.println("\n" + "Displaying record...");
 
 					//Retrieve row data
 					try {
+						System.out.println();
 						System.out.println("<Making POST call>");
+						System.out.println();
+						
 						// Parse the URL
 						String urlParameters  = "choice=" + choice + "&id=" + todoId;
 						byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
@@ -124,7 +129,10 @@ public class TodoClient {
 					System.out.println("Getting ALL records...");
 						//Retrieve row data
 					try {
-						System.out.println("Making GET call");
+						System.out.println();
+						System.out.println("<Making GET call>");
+						System.out.println();
+						
 						String request        = "http://localhost:8080/Lab2/Todo";
 						URL    url            = new URL( request );
 						HttpURLConnection conn= (HttpURLConnection) url.openConnection();   
@@ -150,7 +158,10 @@ public class TodoClient {
 					int deleteId = Integer.parseInt(s.nextLine());
 
 					try {
+						System.out.println();
 						System.out.println("<Making POST call>");
+						System.out.println();
+						
 						// Parse the URL
 						String urlParameters  = "choice=" + choice + "&id=" + deleteId;
 						byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
@@ -188,7 +199,10 @@ public class TodoClient {
 					System.out.print("Enter a message: ");
 					String putMessage = s.nextLine();
 					try {
+						System.out.println();
 						System.out.println("<Making POST call>");
+						System.out.println();
+						
 						// Parse the URL
 						String urlParameters  = "choice=" + choice + "&id=" + putId + "&putMessage=" + putMessage;
 						byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );

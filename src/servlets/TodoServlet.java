@@ -95,12 +95,18 @@ public class TodoServlet extends HttpServlet {
 			case 1: 
 				String message = request.getParameter("message");
 				String[] record = {message, time};
+				if (map.containsKey(id) || map.containsValue(record[0])) {
+					out.println("Insert failed!");
+					out.println("There's already a Todo record with that id or message!");
+					break;
+				} else {
 				map.putIfAbsent(id, record);
 				response.setContentType("text/html");
 				out.println("Insert success!");
 				out.println("id: " + id + "\n" + 
 			    		    "message: " + record[0] + "\n" + 
-			    		    "timestamp: " + record[1] + "\n");				
+			    		    "timestamp: " + record[1] + "\n");		
+				};
 				break;
 			case 2:
 				if (map.containsKey(id)) {
