@@ -1,3 +1,10 @@
+/*
+ * COMP 6302 - Web Services / Internet
+ * Lab 2: ToDo with Servlet
+ * Marc Badrian - Due 3/2/16
+ * 
+ */
+
 package clients;
 
 import java.io.BufferedReader;
@@ -25,7 +32,7 @@ public class TodoClient {
 						+ "(2) GET [id]" + "\n"
 						+ "(3) GET" + "\n"
 						+ "(4) DELETE [id] " + "\n"
-						+ "(5) REPLICATE [URI]" + "\n"
+						+ "(5) PUT [id] [todo message]" + "\n"
 						+ "(6) EXIT PROGRAM" + "\n" + "\n"
 						+ "Please enter a number:  ");
 				try {
@@ -37,6 +44,7 @@ public class TodoClient {
 				switch (choice) {
 				case 1: 
 					// Insert an ToDo item.
+					System.out.println("To POST a record...");
 					System.out.print("Enter an id number: ");
 					int id = Integer.parseInt(s.nextLine());
 					System.out.print("Enter a message: ");
@@ -47,7 +55,7 @@ public class TodoClient {
 						String urlParameters  = "choice=" + choice + "&id=" + id + "&message=" + message;
 						byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
 						int    postDataLength = postData.length;
-						String request        = "http://localhost:8080/Lab2/TodoServlet";
+						String request        = "http://localhost:8080/Lab2/Todo";
 						URL    url            = new URL( request );
 						HttpURLConnection conn= (HttpURLConnection) url.openConnection();   
 						
@@ -74,18 +82,19 @@ public class TodoClient {
 					break;
 				case 2:
 					// Get and display todo message as well as when it was posted.
+					System.out.println("To GET a record...");
 					System.out.print("\n" + "Enter a ToDo id number: ");
 					int todoId = Integer.parseInt(s.nextLine());
 					System.out.println("\n" + "Displaying record...");
 
 					//Retrieve row data
 					try {
-						System.out.println("Making POST call");
+						System.out.println("<Making POST call>");
 						// Parse the URL
 						String urlParameters  = "choice=" + choice + "&id=" + todoId;
 						byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
 						int    postDataLength = postData.length;
-						String request        = "http://localhost:8080/Lab2/TodoServlet";
+						String request        = "http://localhost:8080/Lab2/Todo";
 						URL    url            = new URL( request );
 						HttpURLConnection conn= (HttpURLConnection) url.openConnection();   
 						
@@ -112,11 +121,11 @@ public class TodoClient {
 					break;
 				case 3:
 					//Get and display all todo items
-					System.out.println("Displaying all records...");
+					System.out.println("Getting ALL records...");
 						//Retrieve row data
 					try {
 						System.out.println("Making GET call");
-						String request        = "http://localhost:8080/Lab2/TodoServlet";
+						String request        = "http://localhost:8080/Lab2/Todo";
 						URL    url            = new URL( request );
 						HttpURLConnection conn= (HttpURLConnection) url.openConnection();   
 						
@@ -136,16 +145,17 @@ public class TodoClient {
 					break;
 				case 4:
 					// Deletes the todo message at the given id from the database.
+					System.out.println("To DELETE a record...");
 					System.out.print("Enter an id number: ");
 					int deleteId = Integer.parseInt(s.nextLine());
 
 					try {
-						System.out.println("Making POST call");
+						System.out.println("<Making POST call>");
 						// Parse the URL
 						String urlParameters  = "choice=" + choice + "&id=" + deleteId;
 						byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
 						int    postDataLength = postData.length;
-						String request        = "http://localhost:8080/Lab2/TodoServlet";
+						String request        = "http://localhost:8080/Lab2/Todo";
 						URL    url            = new URL( request );
 						HttpURLConnection conn= (HttpURLConnection) url.openConnection();   
 						
@@ -172,17 +182,18 @@ public class TodoClient {
 					break;
 				case 5:
 					// Insert an ToDo item.
+					System.out.println("To PUT a record...");
 					System.out.print("Enter an id number: ");
 					int putId = Integer.parseInt(s.nextLine());
 					System.out.print("Enter a message: ");
 					String putMessage = s.nextLine();
 					try {
-						System.out.println("Making POST call");
+						System.out.println("<Making POST call>");
 						// Parse the URL
 						String urlParameters  = "choice=" + choice + "&id=" + putId + "&putMessage=" + putMessage;
 						byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
 						int    postDataLength = postData.length;
-						String request        = "http://localhost:8080/Lab2/TodoServlet";
+						String request        = "http://localhost:8080/Lab2/Todo";
 						URL    url            = new URL( request );
 						HttpURLConnection conn= (HttpURLConnection) url.openConnection();   
 						

@@ -1,3 +1,10 @@
+/*
+ * COMP 6302 - Web Services / Internet
+ * Lab 2: ToDo with Servlet
+ * Marc Badrian - Due 3/2/16
+ * 
+ */
+
 package servlets;
 
 
@@ -19,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "TodoServlet",
 description = "This servlet accepts HTTP requests from the Client and stores todo items",
-urlPatterns = {"/TodoServlet"})//,"/todoS"})
+urlPatterns = {"/TodoServlet", "/Todo"})
 public class TodoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     Scanner s = new Scanner(System.in);
